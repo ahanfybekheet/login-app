@@ -38,18 +38,6 @@ void cipher(){
             continue;
 
         }
-        if(isdigit(message[i])){
-
-
-            int c =(message[i])-'0';
-
-            c+=4;
-
-            cout<<c;
-
-            continue;
-
-        }
 
 
         if(isalpha(message[i])==0&&isdigit(message[i])==0){
@@ -104,18 +92,6 @@ void decipher(){
 
 
             cout<<" ";
-
-            continue;
-
-        }
-        if(isdigit(message[i])){
-
-
-            int c =(message[i])-'0';
-
-            c-=4;
-
-            cout<<c;
 
             continue;
 
