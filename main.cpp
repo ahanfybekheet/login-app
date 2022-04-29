@@ -1,18 +1,33 @@
 #include<iostream>
 #include "User.h"
-
+#include "User.cpp"
 using namespace std;
 
 int8_t userChoise;
 
 
 void enterValidChoise(string promptMsg,int min,int max);
-void registering();
 
 int main(){
     
     enterValidChoise("1- Register \n2- Login \n3- Change Password \n4- Exit",1,4);
-
+    switch (userChoise)
+        {
+        case 1:
+        {
+            User user;
+            user.registration();
+            break;
+        }
+        case 2:
+        {
+            User user;
+            user.login();
+            break;
+        }
+        default:
+            break;
+        }
 }
 
 
@@ -27,13 +42,5 @@ void enterValidChoise(string promptMsg,int min,int max){
         else
             cout<<"Please, Enter num between "<<min<<" and "<<max<<"!!..\n";
     }
-}
-
-void registering(){
-    User user;
-    user.setUsername();
-    user.setEmail();
-    user.setPhoneNumber();
-    user.setPassword();
-
+    
 }

@@ -1,36 +1,53 @@
-#include<regex>
+#pragma once
 #include<iostream>
+#include<fstream>
+#include<sstream> 
 #include<string>
 #include<conio.h>
-#include<fstream>
-
+#include<regex>
+#include<vector>
 
 using namespace std;
 
 class User{
-    private:
-        //declare attrs and private methods
+
+    public:
+        //declare attrs
         string username;
         string email;
         string password;
         string phoneNumber;
+        int trail;
+
+        //declare validation
         bool isValidEmail(string e);
         bool isValidUsername(string u);
         bool isValidPhoneNumber(string p);
         bool isValidPassword(string p);
-        void encryptPassword(string p);
-        void decryptPassword(string p);
-        void saveChanges(string changes);
-    public:
-        //declare getter
+        bool isFoundedUsername(string username);
+        bool isFoundedEmail(string email);
+
+        //declare getters
         string getUsername();
+        string getUsernamePasswords(string username);
+        string getLastPassword(string passes);
         string getEmail();
         string getPhoneNumber();
-        //declare setter
+        string encryptPassword(string p);
+
+        //declare setters
+        void saveChanges(string changes);
         void setUsername();
         void setEmail();
         void setPhoneNumber();
         void setPassword();
+
+        //declare operations
+        void registration();
+        void login();
+        void changePassword();
+
+        User();
 
 
 };

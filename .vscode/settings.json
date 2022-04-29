@@ -6,6 +6,7 @@
         "type_traits": "cpp",
         "numbers": "cpp",
         "string": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "iosfwd": "cpp"
     }
 }
