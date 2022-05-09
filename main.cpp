@@ -1,5 +1,6 @@
 #include<iostream>
 #include "User.h"
+#include "User.cpp"
 using namespace std;
 
 int userChoise;
