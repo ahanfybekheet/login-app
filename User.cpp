@@ -32,7 +32,21 @@ bool User::isValidPhoneNumber(string p){
 }
 
 bool User::isValidPassword(string p){
-    if (true)
+    string specialchars = "!@#?";
+    int i =0,upper=0,lower=0,special=0,digit=0;
+    for(i=0;i< p.length() ;i++){
+        if (isdigit(p[i]))
+            digit++;
+        else if (islower(p[i]))
+            lower++;
+        else if (isupper(p[i]))
+            upper++;
+        else if (specialchars.find(p[i])<p.length()&&specialchars.find(p[i])>0)
+            special++;
+        else
+            return false;
+    }
+    if (p.length()>8 && upper >0 && lower>0 && special>0 && digit >0)
         return true;
     else
         return false;
@@ -238,7 +252,7 @@ void User::setPassword(){
             setPassword();
         }
     }else{
-        cout<<"\nYou Entered Weak Password\n";
+        cout<<"Please, Enter strong password\nat least 8 characters\ncontains upper & lower letters\ncontain special character e.g: @#!?\ncontain digits";
         setPassword();
     }
 }
@@ -298,7 +312,98 @@ void User::login(){
         }
 }
 
-User::User(): trail(0){}
+void User::changePassword(){
+    string user,oldPass,newPass,confPass,tempUsername;
+    int i;
+    char ch;
+    cout<<"Username: ";
+    cin>>user;
+        if (isFoundedUsername(user)){
+            username = user;
+            cout<<"Old password: ";
+            for(i=0;(ch=getch())!='\r';){
+                if(ch!=8){
+                    oldPass+=ch;
+                    cout<<"*";
+                    i++;
+                }else{
+                    i--;
+                    oldPass = oldPass.substr(0,i);
+                    if(i<0){
+                        i++;
+                    }else{
+                        cout<<"\b \b";
+                    }
+                }
+            }
+            password = encryptPassword(oldPass);
+            if (password.compare(getUsernamePasswords(username))==0){
+                fstream dataFile;
+                dataFile.open("data.txt",ios::out&ios::app);
+                cout<<"New Password: ";
+                for(i=0;(ch=getch())!='\r';){
+                if(ch!=8){
+                    newPass+=ch;
+                    cout<<"*";
+                    i++;
+                }else{
+                    i--;
+                    newPass = newPass.substr(0,i);
+                    if(i<0){
+                        i++;
+                    }else{
+                        cout<<"\b \b";
+                    }
+                }
+                }
+                if (isValidPassword(newPass)){
+                    cout<<"Confirm Password: ";
+                    for(i=0;(ch=getch())!='\r';){
+                        if(ch!=8){
+                            confPass+=ch;
+                            cout<<"*";
+                            i++;
+                        }else{
+                            i--;
+                            confPass = confPass.substr(0,i);
+                            if(i<0){
+                                i++;
+                            }else{
+                                cout<<"\b \b";
+                            }
+                        }
+                }
+                if (newPass.compare(oldPass)==0){
+                    cout<<"Password Has Been Successfully changed";
+                    password = newPass;
+                    for(int i =1;!dataFile.eof();i++){
+                            if (i%4==1){
+                                getline(dataFile,tempUsername);
+                                if (username.compare(tempUsername)==0){
+                                    getline(dataFile,tempUsername);
+                                    getline(dataFile,tempUsername);
+                                    getline(dataFile,tempUsername);
+                                }
+                            }
+                        }
+                }
+            }
+            else{
+                cout<<"\nFailed login. Try again.\n";
+                trail +=1;
+                if (trail ==3){
+                    cout<<"You is denied access to the system\n";
+                    exit(0);
+                }
+                login();
+            }
+        }else{
+            cout<<"username is not exit\n";
+            login();
+        }
+}
+
+// User::User(): trail(0){}
 
 
 

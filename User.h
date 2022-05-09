@@ -17,6 +17,11 @@ class User{
         string email;
         string password;
         string phoneNumber;
+        vector<string> usernames;
+        vector<string> phoneNumbers;
+        vector<string> emails;
+        vector<string> passwords;
+
         int trail;
 
         //declare validation
