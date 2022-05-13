@@ -384,28 +384,32 @@ void User::changePassword() {
                         }
                     }
                 }
-                if (newPass.compare(oldPass) == 0) {
-                    cout << "Password Has Been Successfully changed\n";
+                if (newPass.compare(confPass) == 0) {
+                    cout << "\nPassword Has Been Successfully changed\n";
                     password = newPass;
                     for (int i = 0; i < usernames.size(); i++) {
                         if (username.compare(usernames.at(i)) == 0) {
-                            passwords.at(i) = password;
+                            passwords.at(i) = encryptPassword(password);
                         }
                     }
                 }
+                else{
+                    cout<<"\nYou Entered Two different Passwords.. Try Again!!..\n";
+                    changePassword();
+                }
             }
             else {
-                cout << "\nFailed login. Try again.\n";
-                trail += 1;
-                if (trail == 3) {
-                    cout << "You is denied access to the system\n";
-                    exit(0);
-                }
+                cout << "\nPlease, Enter strong password\nat least 8 characters\ncontains upper & lower letters\ncontain special character e.g: @#!?\ncontain digits";
                 changePassword();
             }
         }
         else {
-            cout << "username is not exit\n";
+            cout << "\nFailed login. Try again..\n";
+            trail += 1;
+            if (trail == 3) {
+                cout << "You is denied access to the system\n";
+                exit(0);
+            }
             changePassword();
         }
     }
