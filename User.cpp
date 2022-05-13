@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <sstream>
+#include <sstream> 
 #include <string>
 #include <conio.h>
 #include <regex>
@@ -82,7 +82,7 @@ string User::getUsernamePasswords(string username) {
 string User::encryptPassword(string p) {
     string keyWord = "aby";
     string result = "";
-    //Block 1 // Make Length keyword equal to length password
+    //Block 1 // Make Length keyword equal to length password  
     while (keyWord.length() < p.length()) {
         keyWord += keyWord;
     }
@@ -129,7 +129,7 @@ void User::setUsername() {
             cout << "\nSorry, Username already taken, Try Again!!..\n";
         }
         else {
-            cout << "Please, Enter valid username and Try Again!!..\n";
+            cout << "\nPlease, Enter valid username and Try Again!!..\n";
         }
 
     }
@@ -297,7 +297,7 @@ User::User()
         getline(dataFile, temp);
         passwords.push_back(temp);
     }
-    dataFile.close();
+    dataFile.close();   
 }
 
 User::~User()
@@ -384,12 +384,12 @@ void User::changePassword() {
                         }
                     }
                 }
-                if (newPass.compare(oldPass) == 0) {
-                    cout << "Password Has Been Successfully changed\n";
+                if (newPass.compare(confPass) == 0) {
+                    cout << "\nPassword Has Been Successfully changed\n";
                     password = newPass;
-                    for (int i = 0; i < usernames.size(); i++) {
+                    for (int i = 0; i < usernames.size(); i++) {   
                         if (username.compare(usernames.at(i)) == 0) {
-                            passwords.at(i) = password;
+                            passwords.at(i) = encryptPassword(password);
                         }
                     }
                 }
@@ -405,7 +405,7 @@ void User::changePassword() {
             }
         }
         else {
-            cout << "username is not exit\n";
+            cout << "\nusername is not exit\n";
             changePassword();
         }
     }
