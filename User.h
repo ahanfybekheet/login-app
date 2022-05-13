@@ -1,58 +1,53 @@
 #pragma once
-#include<iostream>
-#include<fstream>
-#include<sstream> 
 #include<string>
-#include<conio.h>
-#include<regex>
 #include<vector>
 
 using namespace std;
 
-class User{
+class User {
 
-    public:
-        //declare attrs
-        string username;
-        string email;
-        string password;
-        string phoneNumber;
-        vector<string> usernames;
-        vector<string> phoneNumbers;
-        vector<string> emails;
-        vector<string> passwords;
+public:
+    //declare attrs
+    string username;
+    string email;
+    string password;
+    string phoneNumber;
+    vector<string> usernames;
+    vector<string> phoneNumbers;
+    vector<string> emails;
+    vector<string> passwords;
 
-        int trail;
+    int trail;
 
-        //declare validation
-        bool isValidEmail(string e);
-        bool isValidUsername(string u);
-        bool isValidPhoneNumber(string p);
-        bool isValidPassword(string p);
-        bool isFoundedUsername(string username);
-        bool isFoundedEmail(string email);
+    //declare validation
+    bool isValidEmail(string e);
+    bool isValidUsername(string u);
+    bool isValidPhoneNumber(string p);
+    bool isValidPassword(string p);
+    bool isFoundedUsername(string username);
+    bool isFoundedEmail(string email);
 
-        //declare getters
-        string getUsername();
-        string getUsernamePasswords(string username);
-        string getLastPassword(string passes);
-        string getEmail();
-        string getPhoneNumber();
-        string encryptPassword(string p);
+    ////declare getters
+    //string getUsername();
+    string getUsernamePasswords(string username);
+    //string getEmail();
+    //string getPhoneNumber();
+    string encryptPassword(string p);
 
-        //declare setters
-        void saveChanges(string changes);
-        void setUsername();
-        void setEmail();
-        void setPhoneNumber();
-        void setPassword();
+    //declare setters
+    void saveChanges(string changes,string type);
+    void setUsername();
+    void setEmail();
+    void setPhoneNumber();
+    void setPassword();
 
-        //declare operations
-        void registration();
-        void login();
-        void changePassword();
+    //declare operations
+    void registration();
+    void login();
+    void changePassword();
 
-        User();
+    User();
+    ~User();
 
 
 };
