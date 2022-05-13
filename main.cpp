@@ -1,6 +1,5 @@
 #include<iostream>
 #include "User.h"
-#include "User.cpp"
 using namespace std;
 
 int userChoise;
@@ -23,6 +22,12 @@ int main() {
     {
         User user;
         user.login();
+        break;
+    }
+    case 3:
+    {
+        User user;
+        user.changePassword();
         break;
     }
     default:

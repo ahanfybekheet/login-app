@@ -1,10 +1,5 @@
 #pragma once
-#include<iostream>
-#include<fstream>
-#include<sstream> 
 #include<string>
-#include<conio.h>
-#include<regex>
 #include<vector>
 
 using namespace std;
@@ -40,7 +35,7 @@ public:
     string encryptPassword(string p);
 
     //declare setters
-    void saveChanges(string changes,string type);
+    void saveChanges(string changes, string type);
     void setUsername();
     void setEmail();
     void setPhoneNumber();

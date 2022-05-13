@@ -1,11 +1,11 @@
-#include "User.h"
-#include<iostream>
-#include<fstream>
-#include<sstream> 
-#include<string>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
 #include <conio.h>
 #include <regex>
 #include <vector>
+#include "User.h"
 
 using namespace std;
 
@@ -72,7 +72,7 @@ bool User::isFoundedEmail(string email) {
 
 string User::getUsernamePasswords(string username) {
     for (int i = 0; i < usernames.size(); i++) {
-        if (username.compare(usernames.at(i))==0) {
+        if (username.compare(usernames.at(i)) == 0) {
             return passwords.at(i);
         }
     }
@@ -82,13 +82,13 @@ string User::getUsernamePasswords(string username) {
 string User::encryptPassword(string p) {
     string keyWord = "aby";
     string result = "";
-    //Block 1 // Make Length keyword equal to length password  
+    //Block 1 // Make Length keyword equal to length password
     while (keyWord.length() < p.length()) {
         keyWord += keyWord;
     }
     keyWord = keyWord.substr(0, p.length() - 1);
     // End Of Block 1
-    for (int i = 0; i < p.length(); i++) {
+    for (int i = 0; i < p.length() - 1; i++) {
         p[i] = toupper(p[i]);
         keyWord[i] = toupper(keyWord[i]);
         if (p[i] >= 65 && p[i] <= 90) {
@@ -101,7 +101,7 @@ string User::encryptPassword(string p) {
     return result;
 }
 
-void User::saveChanges(string changes,string type) {
+void User::saveChanges(string changes, string type) {
     if (type.compare("u") == 0) {
         usernames.push_back(changes);
     }
@@ -119,14 +119,14 @@ void User::saveChanges(string changes,string type) {
 void User::setUsername() {
     string u;
     while (true) {
-        cout << "Please, Enter your username: ";
+        cout << "\nPlease, Enter your username: ";
         cin >> u;
         if (isValidUsername(u) && !isFoundedUsername(u)) {
             username = u;
             break;
         }
         else if (isFoundedUsername(u)) {
-            cout << "Sorry, Username already taken, Try Again!!..\n";
+            cout << "\nSorry, Username already taken, Try Again!!..\n";
         }
         else {
             cout << "Please, Enter valid username and Try Again!!..\n";
@@ -145,7 +145,7 @@ void User::setEmail() {
             break;
         }
         else if (isFoundedEmail(e)) {
-            cout << "Sorry, Email already taken, Try Again!!..\n";
+            cout << "\nSorry, Email already taken, Try Again!!..\n";
         }
         else {
             cout << "Please, Enter valid email address and Try Again!!..\n";
@@ -163,7 +163,7 @@ void User::setPhoneNumber() {
             break;
         }
         else {
-            cout << "Please, Enter valid Phone Number and Try Again!!..\n";
+            cout << "\nPlease, Enter valid Phone Number and Try Again!!..\n";
         }
 
     }
@@ -219,7 +219,7 @@ void User::setPassword() {
         }
     }
     else {
-        cout << "Please, Enter strong password\nat least 8 characters\ncontains upper & lower letters\ncontain special character e.g: @#!?\ncontain digits";
+        cout << "\nPlease, Enter strong password\nat least 8 characters\ncontains upper & lower letters\ncontain special character e.g: @#!?\ncontain digits";
         setPassword();
     }
 }
@@ -229,10 +229,10 @@ void User::registration() {
     setEmail();
     setPhoneNumber();
     setPassword();
-    saveChanges(username,"u");
-    saveChanges(email,"e");
-    saveChanges(phoneNumber,"ph");
-    saveChanges(password,"p");
+    saveChanges(username, "u");
+    saveChanges(email, "e");
+    saveChanges(phoneNumber, "ph");
+    saveChanges(password, "p");
 }
 
 void User::login() {
@@ -286,24 +286,18 @@ User::User()
 {
     fstream dataFile;
     string temp;
-    dataFile.open("data.txt", ios::in | ios::app);
-    while (!dataFile.eof()) {
+    dataFile.open("data.txt", ios::in);
+    while (!dataFile.eof() && dataFile.peek() != EOF) {
         getline(dataFile, temp);
-        cin.ignore();
         usernames.push_back(temp);
         getline(dataFile, temp);
-        cin.ignore();
         emails.push_back(temp);
         getline(dataFile, temp);
-        cin.ignore();
         phoneNumbers.push_back(temp);
         getline(dataFile, temp);
-        cin.ignore();
         passwords.push_back(temp);
     }
-
     dataFile.close();
-    
 }
 
 User::~User()
@@ -417,6 +411,3 @@ void User::changePassword() {
     }
 
 }
-
-
-
