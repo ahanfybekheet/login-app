@@ -88,7 +88,7 @@ string User::encryptPassword(string p) {
     }
     keyWord = keyWord.substr(0, p.length() - 1);
     // End Of Block 1
-    for (int i = 0; i < p.length()-1; i++) {
+    for (int i = 0; i < p.length(); i++) {
         p[i] = toupper(p[i]);
         keyWord[i] = toupper(keyWord[i]);
         if (p[i] >= 65 && p[i] <= 90) {
@@ -347,7 +347,7 @@ void User::changePassword() {
         }
         password = encryptPassword(oldPass);
         if (password.compare(getUsernamePasswords(username)) == 0) {
-            cout << "New Password: ";
+            cout << "\nNew Password: ";
             for (i = 0; (ch = _getch()) != '\r';) {
                 if (ch != 8) {
                     newPass += ch;
@@ -366,7 +366,7 @@ void User::changePassword() {
                 }
             }
             if (isValidPassword(newPass)) {
-                cout << "Confirm Password: ";
+                cout << "\nConfirm Password: ";
                 for (i = 0; (ch = _getch()) != '\r';) {
                     if (ch != 8) {
                         confPass += ch;
@@ -385,7 +385,7 @@ void User::changePassword() {
                     }
                 }
                 if (newPass.compare(oldPass) == 0) {
-                    cout << "Password Has Been Successfully changed";
+                    cout << "Password Has Been Successfully changed\n";
                     password = newPass;
                     for (int i = 0; i < usernames.size(); i++) {
                         if (username.compare(usernames.at(i)) == 0) {
