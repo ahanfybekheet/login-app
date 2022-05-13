@@ -30,6 +30,9 @@ int main() {
         user.changePassword();
         break;
     }
+    case 4:
+        exit(0);
+        break;
     default:
         break;
     }

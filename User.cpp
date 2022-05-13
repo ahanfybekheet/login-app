@@ -393,19 +393,23 @@ void User::changePassword() {
                         }
                     }
                 }
+                else{
+                    cout<<"\nYou Entered Two different Passwords.. Try Again!!..\n";
+                    changePassword();
+                }
             }
             else {
-                cout << "\nFailed login. Try again.\n";
-                trail += 1;
-                if (trail == 3) {
-                    cout << "You is denied access to the system\n";
-                    exit(0);
-                }
+                cout << "\nPlease, Enter strong password\nat least 8 characters\ncontains upper & lower letters\ncontain special character e.g: @#!?\ncontain digits";
                 changePassword();
             }
         }
         else {
-            cout << "\nusername is not exit\n";
+            cout << "\nFailed login. Try again..\n";
+            trail += 1;
+            if (trail == 3) {
+                cout << "\nYou is denied access to the system\n";
+                exit(0);
+            }
             changePassword();
         }
     }
